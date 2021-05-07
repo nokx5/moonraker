@@ -1,3 +1,12 @@
+#![feature(proc_macro_hygiene, decl_macro)]
+
+#[macro_use] extern crate rocket;
+
+#[get("/")]
+fn index() -> &'static str {
+    "Hello moonraker, you are beautiful!"
+}
+
 fn main() {
-    println!("Welcome to nokx rust project!");
+    rocket::ignite().mount("/", routes![index]).launch();
 }
